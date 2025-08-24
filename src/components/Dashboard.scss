@@ -1,0 +1,108 @@
+.dashboard {
+  min-height: 100vh;
+  background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+  padding: 2rem;
+
+  .dashboard-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 3rem;
+    
+    h1 {
+      color: #2d3748;
+      font-size: 2.5rem;
+      font-weight: 700;
+      margin: 0;
+    }
+    
+    .logout-btn {
+      padding: 12px 24px;
+      background: #e53e3e;
+      color: white;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      font-weight: 600;
+      transition: background-color 0.3s ease;
+      
+      &:hover {
+        background: #c53030;
+      }
+    }
+  }
+
+  .total-earnings-card {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background: white;
+    padding: 2rem;
+    border-radius: 15px;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+    margin-bottom: 2rem;
+    .primary-amount {
+      font-size: 2.5rem;
+      font-weight: 700;
+      color: #38a169;
+      margin: 0;
+    }
+  }
+
+  .months-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 2rem;
+    max-width: 1200px;
+    margin: 0 auto;
+
+    .month-card {
+      background: white;
+      border-radius: 15px;
+      padding: 2rem;
+      text-align: center;
+      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+      cursor: pointer;
+      transition: all 0.3s ease;
+      
+      &:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
+      }
+      
+      h3 {
+        color: #2d3748;
+        font-size: 1.5rem;
+        margin: 0 0 0.5rem 0;
+        font-weight: 600;
+      }
+      
+      p {
+        color: #718096;
+        font-size: 1rem;
+        margin: 0;
+      }
+    }
+  }
+}
+
+@media (max-width: 768px) {
+  .dashboard {
+    padding: 1rem;
+    
+    .dashboard-header {
+      flex-direction: column;
+      gap: 1rem;
+      text-align: center;
+      
+      h1 {
+        font-size: 2rem;
+      }
+    }
+    
+    .months-grid {
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 1rem;
+    }
+  }
+}

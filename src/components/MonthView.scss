@@ -1,0 +1,612 @@
+.month-view {
+  min-height: 100vh;
+  background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+  padding: 2rem;
+
+  .month-header {
+    display: flex;
+    align-items: center;
+    margin-bottom: 2rem;
+    
+    .back-btn {
+      padding: 10px 20px;
+      background: #4299e1;
+      color: white;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      font-weight: 600;
+      margin-right: 2rem;
+      transition: background-color 0.3s ease;
+      
+      &:hover {
+        background: #3182ce;
+      }
+    }
+    
+    h1 {
+      color: #2d3748;
+      font-size: 2.5rem;
+      font-weight: 700;
+      margin: 0;
+    }
+  }
+
+  .earnings-summary {
+    margin-bottom: 3rem;
+    
+    .summary-card {
+      background: white;
+      border-radius: 15px;
+      padding: 2rem;
+      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+      
+      h3 {
+        color: #2d3748;
+        margin: 0 0 1.5rem 0;
+        font-size: 1.5rem;
+        font-weight: 600;
+      }
+      
+      .totals {
+        display: flex;
+        flex-direction: column;
+        gap: 1rem;
+        
+        .main-total {
+          display: flex;
+          justify-content: space-between;
+          align-items: center;
+          padding: 1rem;
+          background: #f0f9ff;
+          border-radius: 10px;
+          border: 2px solid #38a169;
+          
+          .currency {
+            color: #2d3748;
+            font-weight: 700;
+            font-size: 1.2rem;
+          }
+          
+          .amount {
+            font-size: 2rem;
+            font-weight: 800;
+            color: #38a169;
+          }
+        }
+        
+        .breakdown {
+          display: flex;
+          flex-direction: column;
+          gap: 0.5rem;
+          font-size: 0.9rem;
+          color: #718096;
+          
+          .breakdown-item {
+            display: flex;
+            justify-content: space-between;
+          }
+          
+          .rate-info {
+            font-style: italic;
+            font-size: 0.8rem;
+            text-align: center;
+            padding-top: 0.5rem;
+            border-top: 1px solid #e2e8f0;
+          }
+        }
+        
+        .total-item {
+          display: flex;
+          align-items: center;
+          gap: 0.5rem;
+          
+          .currency {
+            color: #718096;
+            font-weight: 600;
+          }
+          
+          .amount {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: #38a169;
+          }
+        }
+      }
+    }
+  }
+
+  .add-earning-form {
+    background: white;
+    border-radius: 15px;
+    padding: 2rem;
+    margin-bottom: 3rem;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+    
+    h3 {
+      color: #2d3748;
+      margin: 0 0 1.5rem 0;
+      font-size: 1.5rem;
+      font-weight: 600;
+    }
+    
+    .form-row {
+      display: flex;
+      gap: 1rem;
+      margin-bottom: 1rem;
+      
+      .form-group {
+        flex: 1;
+      }
+    }
+    
+    .form-group {
+      margin-bottom: 1rem;
+      
+      label {
+        display: block;
+        margin-bottom: 0.5rem;
+        color: #2d3748;
+        font-weight: 600;
+        font-size: 0.9rem;
+      }
+      
+      input, select {
+        width: 100%;
+        padding: 15px;
+        border: 2px solid #e2e8f0;
+        border-radius: 10px;
+        font-size: 16px;
+        transition: border-color 0.3s ease;
+        box-sizing: border-box;
+        
+        &:focus {
+          outline: none;
+          border-color: #4299e1;
+        }
+      }
+      
+      select {
+        cursor: pointer;
+      }
+    }
+    
+    .add-btn {
+      width: 100%;
+      padding: 15px;
+      background: linear-gradient(135deg, #38a169 0%, #48bb78 100%);
+      color: white;
+      border: none;
+      border-radius: 10px;
+      font-size: 16px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: transform 0.2s ease;
+      
+      &:hover:not(:disabled) {
+        transform: translateY(-2px);
+      }
+      
+      &:disabled {
+        opacity: 0.6;
+        cursor: not-allowed;
+      }
+    }
+  }
+
+  .earnings-list {
+    background: white;
+    border-radius: 15px;
+    padding: 2rem;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+    
+    h3 {
+      color: #2d3748;
+      margin: 0 0 1.5rem 0;
+      font-size: 1.5rem;
+      font-weight: 600;
+    }
+    
+    .no-earnings {
+      text-align: center;
+      color: #718096;
+      padding: 2rem;
+      font-style: italic;
+    }
+    
+    .earnings-items {
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+      
+      .earning-item {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 1.5rem;
+        background: #f7fafc;
+        border-radius: 10px;
+        border-left: 4px solid #4299e1;
+        transition: all 0.3s ease;
+        
+        &.temp-earning {
+          opacity: 0.7;
+          background: #fef5e7;
+          border-left-color: #f6ad55;
+        }
+        
+        .earning-info {
+          h4 {
+            color: #2d3748;
+            margin: 0 0 0.5rem 0;
+            font-weight: 600;
+          }
+          
+          .earning-date {
+            color: #718096;
+            margin: 0;
+            font-size: 0.9rem;
+            
+            .sync-indicator {
+              color: #f6ad55;
+              font-style: italic;
+              font-size: 0.8rem;
+            }
+          }
+        }
+        
+        .earning-amount {
+          text-align: right;
+          
+          .primary-amount {
+            font-size: 1.25rem;
+            font-weight: 700;
+            color: #38a169;
+          }
+          
+          .converted-amount {
+            font-size: 0.9rem;
+            color: #718096;
+            font-style: italic;
+            margin-top: 2px;
+          }
+        }
+      }
+    }
+  }
+}
+
+@media (max-width: 768px) {
+  .month-view {
+    padding: 1rem;
+    
+    .month-header {
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 1rem;
+      
+      h1 {
+        font-size: 2rem;
+      }
+    }
+    
+    .earnings-summary .summary-card .totals {
+      flex-direction: column;
+      gap: 1rem;
+    }
+    
+    .add-earning-form .form-row {
+      flex-direction: column;
+    }
+    
+    .earnings-summary .summary-card .totals {
+      .main-total {
+        flex-direction: column;
+        gap: 0.5rem;
+        text-align: center;
+        
+        .amount {
+          font-size: 1.5rem;
+        }
+      }
+      
+      .breakdown {
+        font-size: 0.8rem;
+      }
+    }
+    
+    .earnings-list .earnings-items .earning-item {
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 1rem;
+      
+      .earning-amount {
+        text-align: left;
+        
+        .primary-amount {
+          font-size: 1.1rem;
+        }
+      }
+    }
+  }
+}
+
+// Стилі для заголовка списку заробітків
+.earnings-list-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1.5rem;
+
+  h3 {
+    margin: 0;
+    color: #2d3748;
+    font-size: 1.5rem;
+    font-weight: 600;
+  }
+
+  .edit-mode-btn {
+    background: #007bff;
+    color: white;
+    border: none;
+    padding: 12px 24px;
+    border-radius: 8px;
+    font-size: 14px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    box-shadow: 0 2px 4px rgba(0, 123, 255, 0.2);
+
+    &:hover:not(:disabled) {
+      background: #0056b3;
+      transform: translateY(-2px);
+      box-shadow: 0 4px 12px rgba(0, 123, 255, 0.3);
+    }
+
+    &.active {
+      background: #dc3545;
+      box-shadow: 0 2px 4px rgba(220, 53, 69, 0.2);
+
+      &:hover:not(:disabled) {
+        background: #c82333;
+        box-shadow: 0 4px 12px rgba(220, 53, 69, 0.3);
+      }
+    }
+
+    &:disabled {
+      opacity: 0.6;
+      cursor: not-allowed;
+      transform: none;
+      box-shadow: none;
+    }
+  }
+}
+
+// Стилі для функцій редагування та видалення
+.earning-item {
+  display: flex;
+  flex-direction: column;
+  
+  .earning-content {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+  }
+
+  .earning-actions {
+    margin-top: 12px;
+    padding-top: 12px;
+    border-top: 1px solid #e9ecef;
+    display: flex;
+    gap: 10px;
+    justify-content: center;
+  }
+
+  .edit-btn,
+  .delete-btn {
+    background: none;
+    border: 1px solid #ddd;
+    font-size: 13px;
+    cursor: pointer;
+    padding: 8px 16px;
+    border-radius: 6px;
+    transition: all 0.2s ease;
+    white-space: nowrap;
+    font-weight: 500;
+    min-width: 100px;
+
+    &:hover:not(:disabled) {
+      transform: translateY(-1px);
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+    }
+
+    &:disabled {
+      opacity: 0.5;
+      cursor: not-allowed;
+    }
+  }
+
+  .edit-btn {
+    background: #28a745;
+    color: white;
+    border-color: #28a745;
+
+    &:hover:not(:disabled) {
+      background: #218838;
+      border-color: #218838;
+    }
+  }
+
+  .delete-btn {
+    background: #dc3545;
+    color: white;
+    border-color: #dc3545;
+
+    &:hover:not(:disabled) {
+      background: #c82333;
+      border-color: #c82333;
+    }
+  }
+}
+
+.edit-earning-form {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  padding: 15px;
+  background: #f8f9fa;
+  border-radius: 8px;
+  border: 2px solid #007bff;
+
+  .edit-form-row {
+    display: flex;
+    gap: 10px;
+  }
+
+  .edit-amount-input {
+    flex: 1;
+    padding: 8px 12px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    font-size: 14px;
+
+    &:focus {
+      outline: none;
+      border-color: #007bff;
+      box-shadow: 0 0 0 2px rgba(0, 123, 255, 0.25);
+    }
+  }
+
+  .edit-currency-select {
+    padding: 8px 12px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    font-size: 14px;
+    background: white;
+
+    &:focus {
+      outline: none;
+      border-color: #007bff;
+      box-shadow: 0 0 0 2px rgba(0, 123, 255, 0.25);
+    }
+  }
+
+  .edit-task-input {
+    width: 100%;
+    padding: 8px 12px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    font-size: 14px;
+
+    &:focus {
+      outline: none;
+      border-color: #007bff;
+      box-shadow: 0 0 0 2px rgba(0, 123, 255, 0.25);
+    }
+  }
+
+  .edit-date-input {
+    width: 100%;
+    padding: 8px 12px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    font-size: 14px;
+
+    &:focus {
+      outline: none;
+      border-color: #007bff;
+      box-shadow: 0 0 0 2px rgba(0, 123, 255, 0.25);
+    }
+  }
+
+  .edit-buttons {
+    display: flex;
+    gap: 10px;
+    justify-content: flex-end;
+
+    .save-btn {
+      background: #28a745;
+      color: white;
+      border: none;
+      padding: 8px 16px;
+      border-radius: 4px;
+      font-size: 14px;
+      cursor: pointer;
+      transition: background-color 0.2s ease;
+
+      &:hover:not(:disabled) {
+        background: #218838;
+      }
+
+      &:disabled {
+        background: #6c757d;
+        cursor: not-allowed;
+      }
+    }
+
+    .cancel-btn {
+      background: #6c757d;
+      color: white;
+      border: none;
+      padding: 8px 16px;
+      border-radius: 4px;
+      font-size: 14px;
+      cursor: pointer;
+      transition: background-color 0.2s ease;
+
+      &:hover {
+        background: #5a6268;
+      }
+    }
+  }
+}
+
+// Адаптивність для мобільних пристроїв
+@media (max-width: 768px) {
+  .earnings-list-header {
+    flex-direction: column;
+    gap: 15px;
+    align-items: stretch;
+
+    .edit-mode-btn {
+      justify-content: center;
+    }
+  }
+
+  .earning-item {
+    .earning-content {
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 10px;
+    }
+
+    .earning-amount {
+      align-self: flex-end;
+    }
+
+    .earning-actions {
+      flex-direction: row;
+      gap: 8px;
+
+      .edit-btn,
+      .delete-btn {
+        width: 100%;
+      }
+    }
+  }
+
+  .edit-earning-form {
+    .edit-form-row {
+      flex-direction: column;
+    }
+
+    .edit-buttons {
+      flex-direction: column;
+    }
+  }
+}
